@@ -20,39 +20,43 @@ import com.example.trenin.ui.theme.*
 class MainActivity : ComponentActivity() {
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Функция, которая создает Intent для открытия приложения "Сообщения"
-        fun openSms(){
+        fun openSms() {
             val smsintent = Intent(Intent.ACTION_VIEW, Uri.parse("sms:"))
             startActivity(smsintent)
         }
+
         //Функция, которая создает Intent для открытия приложения "Контакты"
-        fun openContact(){
+        fun openContact() {
             val contactintent = Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/"))
             startActivity(contactintent)
 
         }
         setContent {
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            TopBlackTwo,
-                            BottomGray
-                        ),
-                        startY = 300f,
-                        endY = 500f
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                TopBlackTwo,
+                                BottomGray
+                            ),
+                            startY = 300f,
+                            endY = 500f
+                        )
                     )
-                )){
+            ) {
                 //Контент
                 Column {
 
-                    Spacer(modifier = Modifier
-                        .fillMaxWidth()
-                        .height(16.dp))
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(16.dp)
+                    )
 
                     var isSwapped by remember { mutableStateOf(false) }
 
@@ -60,20 +64,30 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize()
                     ) {
                         //Header
-                        Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
-                            .fillMaxWidth()
-                            .background(color = TopBlackTwo)
-                            .padding(16.dp)
+                        Row(
+                            horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+                                .fillMaxWidth()
+                                .background(color = TopBlackTwo)
+                                .padding(16.dp)
                         ) {
-                            Icon(painter = painterResource(R.drawable.ic_chat), tint = Color.White, contentDescription ="Иконка чата",
+                            Icon(painter = painterResource(R.drawable.ic_chat),
+                                tint = Color.White,
+                                contentDescription = "Иконка чата",
                                 modifier = Modifier
-                                    .clickable (onClick = {openSms()}))
-                            Icon(painter = painterResource(R.drawable.union), tint = Color.White, contentDescription ="Иконка чата" ,
+                                    .clickable(onClick = { openSms() })
+                            )
+                            Icon(painter = painterResource(R.drawable.union),
+                                tint = Color.White,
+                                contentDescription = "Иконка чата",
                                 modifier = Modifier
-                                    .clickable (onClick = {openContact()}))
-                            Icon(painter = painterResource(R.drawable.ic_cube), tint = Color.White, contentDescription ="Иконка чата",
+                                    .clickable(onClick = { openContact() })
+                            )
+                            Icon(painter = painterResource(R.drawable.ic_cube),
+                                tint = Color.White,
+                                contentDescription = "Иконка чата",
                                 modifier = Modifier
-                                    .clickable(onClick = {isSwapped = !isSwapped}) )
+                                    .clickable(onClick = { isSwapped = !isSwapped })
+                            )
                         }
                         if (isSwapped) {
                             MemberCall()
@@ -82,9 +96,11 @@ class MainActivity : ComponentActivity() {
                             MemberCallTwo()
                             MemberCall()
                         }
-                        Spacer(modifier = Modifier
-                            .fillMaxWidth()
-                            .height(25.dp))
+                        Spacer(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(25.dp)
+                        )
 
                         Futter()
                     }
@@ -93,6 +109,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 
 
 
